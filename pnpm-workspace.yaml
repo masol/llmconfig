@@ -1,9 +1,16 @@
+catalogMode: prefer
+
+ignoreWorkspaceRootCheck: true
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
 packages:
   - playground
   - docs
   - packages/*
   - examples/*
-
 catalog:
   '@ai-sdk/anthropic': ^3.0.1
   '@ai-sdk/google': ^3.0.1
@@ -20,8 +27,6 @@ catalog:
   vite: ^7.3.0
   zod: ^4.2.1
 
-catalogMode: prefer
-
 catalogs:
   cli:
     '@antfu/eslint-config': ^6.6.1
@@ -31,10 +36,8 @@ catalogs:
     lint-staged: ^16.2.7
     publint: ^0.3.16
     simple-git-hooks: ^2.13.1
-    tsdown: ^0.17.3
     tsx: ^4.21.0
     typescript: ^5.9.3
-    vite: ^7.2.7
   inlined:
     '@antfu/utils': ^9.3.0
   testing:
@@ -45,12 +48,6 @@ catalogs:
   types:
     '@types/node': ^25.0.1
 
-ignoreWorkspaceRootCheck: true
-
 onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks
-
-shellEmulator: true
-
-trustPolicy: no-downgrade

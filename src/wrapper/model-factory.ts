@@ -88,16 +88,18 @@ export class ModelFactory {
       apiKey,
       baseURL,
       // 移除 compatibility 属性，使用 fetch 选项来处理兼容性
-      fetch: strict ? undefined : async (url, init) => {
+      fetch: strict
+        ? undefined
+        : async (url, init) => {
         // 兼容模式：更宽松的错误处理
-        try {
-          return await fetch(url, init)
-        }
-        catch (error) {
-          console.warn('OpenAI compatible fetch error:', error)
-          throw error
-        }
-      },
+          try {
+            return await fetch(url, init)
+          }
+          catch (error) {
+            console.warn('OpenAI compatible fetch error:', error)
+            throw error
+          }
+        },
     })
     return openai.chat(modelName)
   }
