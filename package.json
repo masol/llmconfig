@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.25.0",
   "description": "基于@ai-sdk,允许封装多个llm provider.使得配置与调用分离。",
-  "author": "",
+  "author": "lizhutang",
   "license": "MIT",
   "funding": "https://github.com/sponsors/masol",
   "homepage": "https://github.com/masol/llmconfig#readme",
@@ -13,7 +13,10 @@
     "url": "git+https://github.com/masol/llmconfig.git"
   },
   "bugs": "https://github.com/masol/llmconfig/issues",
-  "keywords": [],
+  "keywords": [
+    "llm",
+    "config"
+  ],
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.mjs",
@@ -36,21 +39,35 @@
     "typecheck": "tsc",
     "prepare": "simple-git-hooks"
   },
+  "dependencies": {
+    "@ai-sdk/anthropic": "catalog:",
+    "@ai-sdk/google": "catalog:",
+    "@ai-sdk/openai": "catalog:",
+    "@ai-sdk/xai": "catalog:",
+    "ai": "catalog:",
+    "html-entities": "catalog:",
+    "json5": "catalog:",
+    "lodash": "catalog:",
+    "marked": "catalog:",
+    "zod": "catalog:"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
     "@antfu/ni": "catalog:cli",
     "@antfu/utils": "catalog:inlined",
+    "@types/lodash": "catalog:",
     "@types/node": "catalog:types",
     "bumpp": "catalog:cli",
+    "dexie": "catalog:",
     "eslint": "catalog:cli",
     "lint-staged": "catalog:cli",
     "publint": "catalog:cli",
     "simple-git-hooks": "catalog:cli",
     "tinyexec": "catalog:testing",
-    "tsdown": "catalog:cli",
+    "tsdown": "catalog:",
     "tsx": "catalog:cli",
     "typescript": "catalog:cli",
-    "vite": "catalog:cli",
+    "vite": "catalog:",
     "vitest": "catalog:testing",
     "vitest-package-exports": "catalog:testing",
     "yaml": "catalog:testing"

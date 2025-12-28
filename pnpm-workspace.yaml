@@ -1,13 +1,26 @@
-catalogMode: prefer
-ignoreWorkspaceRootCheck: true
-shellEmulator: true
-trustPolicy: no-downgrade
-
 packages:
   - playground
   - docs
   - packages/*
   - examples/*
+
+catalog:
+  '@ai-sdk/anthropic': ^3.0.1
+  '@ai-sdk/google': ^3.0.1
+  '@ai-sdk/openai': ^3.0.1
+  '@ai-sdk/xai': ^3.0.1
+  '@types/lodash': ^4.17.21
+  ai: ^6.0.3
+  dexie: ^4.2.1
+  html-entities: ^2.6.0
+  json5: ^2.2.3
+  lodash: ^4.17.21
+  marked: ^17.0.1
+  tsdown: ^0.17.4
+  vite: ^7.3.0
+  zod: ^4.2.1
+
+catalogMode: prefer
 
 catalogs:
   cli:
@@ -31,6 +44,13 @@ catalogs:
     yaml: ^2.8.2
   types:
     '@types/node': ^25.0.1
+
+ignoreWorkspaceRootCheck: true
+
 onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
