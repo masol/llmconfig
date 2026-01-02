@@ -1,4 +1,4 @@
-import type { LLMBility, LLMConfig, LLMProvider } from '../types/llmconfig'
+import type { LLMBility, LLMConfig } from '../types/llmconfig'
 // wrapper-factory.ts
 import type { ILLMWrapper } from '../types/llmwrapper'
 import { TextWrapper } from './text'
@@ -10,12 +10,12 @@ export class WrapperFactory {
   /**
    * 根据 tag 创建相应的包装器
    */
-  static createWrapper(config: LLMConfig, provider: LLMProvider): ILLMWrapper {
+  static createWrapper(config: LLMConfig): ILLMWrapper {
     const bility = this.getModelTypeFromTag(config.bility)
 
     switch (bility) {
       case 'text':
-        return new TextWrapper(config, provider)
+        return new TextWrapper(config)
       case 'image':
         break
     }

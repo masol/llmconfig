@@ -1,7 +1,8 @@
 // 移除langchain依赖．转而使用openAI兼容的API来通信，非支持OpenAI的服务，要制作adapter到OpenAI.
 // 为了方便tool,mcp,skill支持，使用vercel/ai．
 
-import type { LLMProvider } from '../types/llmconfig'
+import type { LLMConfig } from '../types/llmconfig'
+
 // import { createOpenAI } from '@ai-sdk/openai';
 
 export interface ProviderInfo {
@@ -69,11 +70,11 @@ export const PROVIDER_CONFIG: Record<string, ProviderInfo> = {
 
 export const ProviderNames = Object.keys(PROVIDER_CONFIG)
 
-export async function listModels(provider: LLMProvider): Promise<string[]> {
-  const providerConfig = PROVIDER_CONFIG[provider.name]
+export async function listModels(config: LLMConfig): Promise<string[]> {
+  const providerConfig = PROVIDER_CONFIG[config.provider]
 
   if (!providerConfig) {
-    throw new Error(`不支持的提供商: ${provider.name}`)
+    throw new Error(`不支持的提供商: ${config.provider}`)
   }
 
   const baseURL = (providerConfig.baseURL).trim()
@@ -81,7 +82,7 @@ export async function listModels(provider: LLMProvider): Promise<string[]> {
   // OpenAI 兼容的端点
   const response = await fetch(`${baseURL}/models`, {
     headers: {
-      'Authorization': `Bearer ${provider.apiKey}`,
+      'Authorization': `Bearer ${config.apiKey}`,
       'Content-Type': 'application/json',
     },
   })

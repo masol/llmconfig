@@ -1,6 +1,6 @@
 /* eslint-disable jsdoc/check-param-names */
 import type { LanguageModel } from 'ai'
-import type { LLMConfig, LLMProvider } from '../types/llmconfig'
+import type { LLMConfig } from '../types/llmconfig'
 import type { ProviderInfo } from './providers'
 import { createAnthropic } from '@ai-sdk/anthropic'
 import { createGoogleGenerativeAI } from '@ai-sdk/google'
@@ -15,14 +15,14 @@ export class ModelFactory {
   /**
    * 创建 AI SDK 模型实例
    */
-  static createModel(config: LLMConfig, provider: LLMProvider): LanguageModel {
-    const constProvider = PROVIDER_CONFIG[provider.name]
+  static createModel(config: LLMConfig): LanguageModel {
+    const constProvider = PROVIDER_CONFIG[config.provider]
     if (!constProvider) {
-      throw new Error(`不支持的提供商: ${config.pid}`)
+      throw new Error(`不支持的提供商: ${config.provider}`)
     }
 
     const modelName = config.model.trim()
-    const apiKey = provider.apiKey
+    const apiKey = config.apiKey
     const baseURL = constProvider.baseURL?.trim()
     const protocol = constProvider.protocal || 'openai'
 
@@ -30,8 +30,8 @@ export class ModelFactory {
       return this.createModelByProtocol(protocol, modelName, apiKey, baseURL)
     }
     catch (error) {
-      console.error(`创建模型失败 (${config.pid}):`, error)
-      throw new Error(`无法创建模型: ${config.pid} - ${modelName}`)
+      console.error(`创建模型失败 (${config.provider}):`, error)
+      throw new Error(`无法创建模型: ${config.provider} - ${modelName}`)
     }
   }
 

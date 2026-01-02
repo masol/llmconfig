@@ -1,6 +1,6 @@
 import type { ModelMessage } from 'ai'
 import type z from 'zod'
-import type { LLMBility, LLMConfig, LLMProvider } from './types/llmconfig'
+import type { LLMBility, LLMConfig } from './types/llmconfig'
 import type { CallResult, GenerateObjectOptions, GenerateObjectResult, ILLMWrapper, JSONCallResult } from './types/llmwrapper'
 import { isTextLLMWrapper } from './utils/guard'
 import { WrapperFactory } from './wrapper'
@@ -13,14 +13,9 @@ const CallError: CallResult = {
 export type WrapperPredicate = (wrapper: ILLMWrapper) => boolean
 
 export class Manager {
-  #providers: LLMProvider[] = []
   #wrappers: Map<string, ILLMWrapper> = new Map()
   get configs(): LLMConfig[] {
     return Array.from(this.#wrappers.values()).map(wrapper => wrapper.getConfig())
-  }
-
-  get providers(): LLMProvider[] {
-    return this.#providers
   }
 
   get wrappers(): ILLMWrapper[] {
@@ -41,8 +36,7 @@ export class Manager {
       .find(pred)
   }
 
-  reLoad(models: LLMConfig[], provides: LLMProvider[]): void {
-    this.#providers = [...provides]
+  reLoad(models: LLMConfig[]): void {
     this.#wrappers.clear()
     models.forEach((model) => {
       this.upsertWrapper(model)
@@ -59,13 +53,7 @@ export class Manager {
       return true
     }
 
-    const provider = this.#providers.find(p => p.id === cfg.pid)
-
-    if (!provider) { // 返回false将禁止数据库同步．
-      return false
-    }
-
-    const wrapper = WrapperFactory.createWrapper(cfg, provider)
+    const wrapper = WrapperFactory.createWrapper(cfg)
     this.#wrappers.set(cfg.id, wrapper)
     return true
   }

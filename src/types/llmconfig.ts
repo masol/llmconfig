@@ -2,20 +2,22 @@ import type { LLMBilities } from '../utils/const'
 
 export type LLMBility = typeof LLMBilities[number]
 
-export interface LLMProvider {
-  id: string
-  name: string
-  apiKey: string
-  createdAt: number
-  baseUrl?: string
-}
+// export interface LLMProvider {
+//   id: string
+//   name: string
+//   apiKey: string
+//   createdAt: number
+//   baseUrl?: string
+// }
 
 /**
  * LLM配置接口
  */
 export interface LLMConfig {
   id: string
-  pid: string // provider Id.
+  provider: string // provider name[key].
+  apiKey: string
+  baseUrl?: string
   model: string // 模型名称.
   bility: LLMBility
   createdAt: number

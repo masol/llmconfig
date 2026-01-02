@@ -1,6 +1,6 @@
 import type { LanguageModel, ModelMessage } from 'ai'
 import type { z } from 'zod'
-import type { LLMConfig, LLMProvider } from '../types/llmconfig'
+import type { LLMConfig } from '../types/llmconfig'
 import type { CallResult, GenerateObjectResult, ILLMWrapper, JSONCallResult } from '../types/llmwrapper'
 import { generateText, Output, streamText } from 'ai'
 import { JSONParser } from './json-parser.js'
@@ -16,9 +16,8 @@ export class TextWrapper implements ILLMWrapper {
 
   constructor(
     private config: LLMConfig,
-    private provider: LLMProvider,
   ) {
-    this.model = ModelFactory.createModel(config, provider)
+    this.model = ModelFactory.createModel(config)
   }
 
   /**
