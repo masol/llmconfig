@@ -1,9 +1,9 @@
 // import {type Dexie} from 'dexie'
 
-export const TableSchema = {
-  provider: 'id,name,createdAt',
-  llms: 'id,pid,model,bility,createdAt',
-} as const
+// export const TableSchema = {
+//   provider: 'id,name,createdAt',
+//   llms: 'id,provider,model,bility,createdAt',
+// } as const
 
 export const LLMBilities = [
   'text',

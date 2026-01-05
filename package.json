@@ -58,7 +58,6 @@
     "@types/lodash": "catalog:",
     "@types/node": "catalog:types",
     "bumpp": "catalog:cli",
-    "dexie": "catalog:",
     "eslint": "catalog:cli",
     "lint-staged": "catalog:cli",
     "publint": "catalog:cli",
