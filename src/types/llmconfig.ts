@@ -25,5 +25,5 @@ export interface LLMConfig {
   enabled?: boolean
   temperature?: number
   maxTokens?: number
-  // [key: string]: unknown
+  [key: string]: unknown
 }

@@ -20,7 +20,7 @@ export class WrapperFactory {
         break
     }
 
-    throw new Error(`不支持的模型标签: ${bility}`)
+    throw new Error(`尚未实现的模型类型: ${bility}`)
 
     // // 图像类型
     // if (tag === 'image' || tag === 'image_modify') {
