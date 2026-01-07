@@ -1,7 +1,7 @@
 {
   "name": "llmconfig",
   "type": "module",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "packageManager": "pnpm@10.25.0",
   "description": "基于@ai-sdk,允许封装多个llm provider.使得配置与调用分离。",
   "author": "lizhutang",
